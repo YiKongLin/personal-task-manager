@@ -1,4 +1,4 @@
-// 主进程入口 main.js
+// 主进程入口 main.cjs
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
@@ -20,17 +20,21 @@ function saveTasks(tasks) {
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1000,
-    height: 700,
+    width: 1200,
+    height: 800,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: false,
-      contextIsolation: true
-    }
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
   });
-  win.loadURL(
-    process.env.VITE_DEV_SERVER_URL || `file://${path.join(__dirname, 'dist/index.html')}`
-  );
+
+  // 判断开发/生产环境
+  if (!app.isPackaged) {
+    win.loadURL('http://localhost:5173');
+  } else {
+    // 正确加载 asar 包内的 index.html
+    win.loadFile(path.join(__dirname, 'build', 'index.html'));
+  }
 }
 
 app.whenReady().then(() => {

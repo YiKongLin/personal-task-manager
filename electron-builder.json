@@ -1,0 +1,35 @@
+{
+  "appId": "com.example.app",          
+  "productName": "personal-task-manager",               
+  "directories": {
+    "output": "dist",                   
+    "buildResources": "build/icons"     
+  },
+  "files": ["**/*", "!**/*.test.js"],   
+  "asar": true,                         
+  "win": {                              
+    "target": "nsis",                   
+    "icon": "build/icon.ico",
+    "artifactName": " $ {productName}- $ {version}. $ {ext}"  
+  },
+  "nsis": {                             
+    "oneClick": false,                  
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "installerIcon": "build/installer.ico"
+  },
+  "mac": {                              
+    "category": "public.app-category.developer-tools",
+    "icon": "build/icon.icns",
+    "target": "dmg"
+  },
+  "linux": {                            
+    "target": "AppImage",
+    "icon": "build/icon.png"
+  },
+  "publish": {                          
+    "provider": "github",
+    "owner": "your-username",
+    "repo": "your-repo"
+  }
+}

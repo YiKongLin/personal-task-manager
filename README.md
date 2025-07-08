@@ -24,7 +24,7 @@
 
 1. 安装 electron-builder：`npm install --save-dev electron-builder`
 2. 构建前端：`npm run build`
-3. 打包生成安装包：`npm run dist`
+3. 打包生成安装包：`npm run electron:build`
 
 ## 未来计划
 
