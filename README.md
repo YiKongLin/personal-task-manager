@@ -20,11 +20,42 @@
 2. 启动前端开发服务器：`npm run dev`
 3. 构建前端后启动桌面端：`npm run build && npm run start`
 
+
 ## 打包与分发
 
+### 通用准备
 1. 安装 electron-builder：`npm install --save-dev electron-builder`
 2. 构建前端：`npm run build`
-3. 打包生成安装包：`npm run electron:build`
+
+### macOS 平台
+打包为 DMG/ZIP（arm64 架构）：
+
+```sh
+npm run electron:build -- --mac
+```
+打包产物在 `dist/` 目录下，包含 `.dmg` 和 `.zip` 文件。
+
+### Windows 平台
+打包为 EXE 安装包（x64 架构）：
+
+```sh
+npm run electron:build -- --win --x64
+```
+打包产物在 `dist/` 目录下，包含 `.exe` 文件。
+
+### Linux 平台
+打包为 AppImage/DEB 等格式（x64 架构）：
+
+```sh
+npm run electron:build -- --linux
+```
+打包产物在 `dist/` 目录下，包含 `.AppImage`、`.deb` 等文件。
+
+> 如需多平台同时打包，可用：
+> ```sh
+> npm run electron:build -- -mwl
+> ```
+> 其中 `-mwl` 代表 mac、win、linux。
 
 ## 未来计划
 

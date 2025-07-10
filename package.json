@@ -38,6 +38,13 @@
       "build/**/*",
       "main.cjs",
       "package.json"
-    ]
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.productivity"
+    }
   }
 }
